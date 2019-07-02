@@ -6,16 +6,18 @@
       yum: 
         name: ['docker', 'docker-client', 'docker-client-latest', 'docker-common', 'docker-latest', 'docker-latest-logrotate', 'docker-logrotate', 'docker-engine']
         state: absent
+
     - name: Install pre-reqs
       yum:
         name: ['yum-utils', 'device-mapper-persistent-data', 'lvm2']
-        state: latest
+        state: latest 
 
     - name: Add Docker repo
       get_url:
         url: https://download.docker.com/linux/centos/docker-ce.repo
         dest: /etc/yum.repos.d/docker-ce.repo
         mode: 0644
+
     - name: Install Docker 
       package: 
         name: docker-ce
@@ -26,3 +28,9 @@
         name: docker      
         state: started
         enabled: yes
+
+    - name: Add the user 'ansible' to group of 'docker'
+      user:
+        name: ansible
+        group: docker
+

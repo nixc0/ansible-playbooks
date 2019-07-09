@@ -9,7 +9,7 @@
 
     - name: Install pre-reqs
       yum:
-        name: ['yum-utils', 'device-mapper-persistent-data', 'lvm2']
+        name: ['yum-utils', 'device-mapper-persistent-data', 'lvm2', 'git']
         state: latest 
 
     - name: Add Docker repo
